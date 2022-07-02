@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import config from './config'
-
+import morgan from 'morgan'
 import db from './database/index'
 import route from './routes'
 
@@ -8,6 +8,8 @@ import route from './routes'
 const app = express()
 //to pare the input date as json
 app.use(express.json())
+//using logger middlewares
+app.use(morgan('short'))
 //just normal get request for the server
 app.get('/', (req: Request, res: Response): void => {
   res.json({

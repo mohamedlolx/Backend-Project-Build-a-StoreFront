@@ -1,7 +1,7 @@
 {
-  "name": "test-1",
+  "name": "mohamed_hassan",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the Project No. 2 Udacity Front Store",
   "main": "index.js",
   "scripts": {
     "test": "npx tsc && jasmine",
@@ -13,7 +13,7 @@
     "migration:downt": "db-migrate --env test down",
     "migration:reset": "db-migrate  reset",
     "migration:resett": "db-migrate --env test reset",
-    "migration:test": "set nodeEnv=test && npx tsc && db-migrate --env test up && npx tsc && jasmine && db-migrate --env test reset ",
+    "migration:test": "set nodeEnv=test && db-migrate --env test up && npx tsc && jasmine && db-migrate --env test reset ",
     "build": "yarn clean && npx tsc",
     "start": "npm run build && nodemon build/index.js",
     "format": "prettier --write src/**/*.ts",
