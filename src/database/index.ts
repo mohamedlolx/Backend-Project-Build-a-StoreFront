@@ -8,7 +8,8 @@ const pool = new Pool({
   database: config.database,
   user: config.user,
   password: config.password,
-  port: port
+  port: port,
+  max: 1
 })
 
 pool.on('error', (error: Error) => {

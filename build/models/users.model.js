@@ -112,6 +112,7 @@ class userModel {
                 const connection = yield index_1.default.connect();
                 const sql = `SELECT password FROM users WHERE user_name=$1`;
                 const result = yield connection.query(sql, [user_name]);
+                connection.release();
                 if (result.rows.length) {
                     const { password: hashPassword } = result.rows[0];
                     const isValid = bcrypt_1.default.compareSync(`${password}${config_1.default.pepper}`, hashPassword);
@@ -119,10 +120,10 @@ class userModel {
                         const connection = yield index_1.default.connect();
                         const dataUser = yield connection.query(`
           SELECT user_id, user_name, first_name, last_name FROM users where user_name=$1`, [user_name]);
+                        connection.release();
                         return dataUser.rows[0];
                     }
                 }
-                connection.release();
                 return null;
             }
             catch (error) {

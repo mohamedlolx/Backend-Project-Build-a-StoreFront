@@ -101,6 +101,7 @@ class userModel {
       const connection = await db.connect()
       const sql = `SELECT password FROM users WHERE user_name=$1`
       const result = await connection.query(sql, [user_name])
+      connection.release()
       if (result.rows.length) {
         const { password: hashPassword } = result.rows[0]
         const isValid = bcrypt.compareSync(
@@ -114,10 +115,10 @@ class userModel {
           SELECT user_id, user_name, first_name, last_name FROM users where user_name=$1`,
             [user_name]
           )
+          connection.release()
           return dataUser.rows[0]
         }
       }
-      connection.release()
       return null
     } catch (error) {
       throw new Error(
