@@ -1,12 +1,11 @@
 import express, { Request, Response } from 'express'
 import config from './config'
-import morgan from 'morgan'
+
 import db from './database/index'
 import route from './routes'
 
 //create isntace of express to our app
 const app = express()
-app.use(morgan('short'))
 //to pare the input date as json
 app.use(express.json())
 //just normal get request for the server

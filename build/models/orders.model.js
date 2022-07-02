@@ -53,7 +53,7 @@ class orderModel {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const connection = yield index_1.default.connect();
-                const sql = `SELECT order_id, order_status , user_id FROM orders  WHERE order_id=($1)  `;
+                const sql = `SELECT user_id, order_status , order_id FROM orders  WHERE order_id=($1)`;
                 const result = yield connection.query(sql, [order_id]);
                 connection.release();
                 return result.rows[0];

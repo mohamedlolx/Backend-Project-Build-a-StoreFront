@@ -69,7 +69,7 @@ class productModel {
             try {
                 const connection = yield index_1.default.connect();
                 const sql = `UPDATE products set (product_name, price) = 
-      ($1,$2) WHERE product_id=$3  RETURNING *`;
+      ($1,$2) WHERE product_id=$3 RETURNING *`;
                 const result = yield connection.query(sql, [
                     product.product_name,
                     product.price,
@@ -88,7 +88,7 @@ class productModel {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const connection = yield index_1.default.connect();
-                const sql = `DELETE FROM products WHERE product_id=$1 RETURNING *`;
+                const sql = `DELETE FROM products WHERE product_id=($1) RETURNING product_id, product_name, price  `;
                 const result = yield connection.query(sql, [product_id]);
                 connection.release();
                 return result.rows[0];

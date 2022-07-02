@@ -70,7 +70,6 @@ describe('Products order Unit Testing', () => {
       const createProdOrd =
         await ProdOrderModel.createProducts_orders(product_order)
       product_order.product_order_id = createProdOrd.product_order_id
-      console.log(userr, product, order, product_order)
     })
 
     afterAll(async () => {

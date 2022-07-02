@@ -55,7 +55,7 @@ class productModel {
     try {
       const connection = await db.connect()
       const sql = `UPDATE products set (product_name, price) = 
-      ($1,$2) WHERE product_id=$3  RETURNING *`
+      ($1,$2) WHERE product_id=$3 RETURNING *`
       const result = await connection.query(sql as string, [
         product.product_name,
         product.price,
@@ -75,7 +75,7 @@ class productModel {
   async deleteOneProduct(product_id: string): Promise<products> {
     try {
       const connection = await db.connect()
-      const sql = `DELETE FROM products WHERE product_id=$1 RETURNING *`
+      const sql = `DELETE FROM products WHERE product_id=($1) RETURNING product_id, product_name, price  `
       const result = await connection.query(sql, [product_id])
       connection.release()
       return result.rows[0]

@@ -45,7 +45,7 @@ export const getOneOrder = async (
       req.params.order_id as string
     )
     res.json({
-      data: order,
+      data: { ...order },
       meesage: 'order retrieved successfully '
     })
   } catch (error) {

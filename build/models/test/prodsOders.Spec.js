@@ -68,7 +68,6 @@ describe('Products order Unit Testing', () => {
             product_order.order_id = creatOrder.order_id;
             const createProdOrd = yield ProdOrderModel.createProducts_orders(product_order);
             product_order.product_order_id = createProdOrd.product_order_id;
-            console.log(userr, product, order, product_order);
         }));
         afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
             const connection = yield index_1.default.connect();

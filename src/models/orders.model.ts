@@ -38,7 +38,7 @@ class orderModel {
   async getOneOrder(order_id: string): Promise<orders> {
     try {
       const connection = await db.connect()
-      const sql = `SELECT order_id, order_status , user_id FROM orders  WHERE order_id=($1)  `
+      const sql = `SELECT user_id, order_status , order_id FROM orders  WHERE order_id=($1)`
       const result = await connection.query(sql, [order_id])
       connection.release()
       return result.rows[0]

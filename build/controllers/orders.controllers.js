@@ -45,7 +45,7 @@ const getOneOrder = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     try {
         const order = yield OrderModel.getOneOrder(req.params.order_id);
         res.json({
-            data: order,
+            data: Object.assign({}, order),
             meesage: 'order retrieved successfully '
         });
     }
