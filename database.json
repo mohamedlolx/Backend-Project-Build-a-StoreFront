@@ -15,7 +15,7 @@
     "host": { "ENV": "pgHost" },
     "port": { "ENV": "pgPort" },
     "database": { "ENV": "pgDb_test" },
-    "user": { "ENV": "POSTGRESS_USER" },
-    "password": { "ENV": "POSTGRESS_PASSWORD" }
+    "user": { "ENV": "pgUser" },
+    "password": { "ENV": "pgPassword" }
   }
 }

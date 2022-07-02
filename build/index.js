@@ -4,31 +4,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const pg_1 = require("pg");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const { port, pgHost, pgPort, pgDb, pgUser, pgPassword } = process.env;
+const config_1 = __importDefault(require("./config"));
+const morgan_1 = __importDefault(require("morgan"));
+const index_1 = __importDefault(require("./database/index"));
+const routes_1 = __importDefault(require("./routes"));
+//create isntace of express to our app
 const app = (0, express_1.default)();
-app.use((0, express_1.default)());
+app.use((0, morgan_1.default)('short'));
+//to pare the input date as json
+app.use(express_1.default.json());
+//just normal get request for the server
 app.get('/', (req, res) => {
     res.json({
         message: "'Hello from Server Side Get Request'"
     });
 });
-app.listen(port, () => {
-    console.log(`Server is working on port ${port}`);
+//here the server is listening on the post to check it's running
+app.listen(config_1.default.port, () => {
+    console.log(`Server is working on port ${config_1.default.port}`);
 });
-const pool = new pg_1.Pool({
-    user: pgUser,
-    host: pgHost,
-    password: pgPassword,
-    database: pgDb,
-    port: parseInt(pgPort, 10)
-});
-pool.connect().then((client) => {
-    return client.query('SELECT NOW()').then((res) => {
-        console.log(res.rows);
+//this is just a db test connection to give me time when the connection is done
+index_1.default.connect().then((client) => {
+    return client
+        .query('SELECT NOW()')
+        .then((res) => {
         client.release();
+        console.log(res.rows);
+    })
+        .catch((err) => {
+        client.release();
+        console.log(err);
+    });
+});
+//this is the end point to connect server to our routes
+app.use('/api', routes_1.default);
+// this line will handle anyerror related to wrong end poing
+app.use((_req, res) => {
+    res.status(404).json({
+        message: 'You are lost this is wrong route check the api routes'
     });
 });
 exports.default = app;

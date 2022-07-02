@@ -2,13 +2,28 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const { port, pgHost, pgPort, pgDb, pgUser, pgPassword } = process.env
+const {
+  port,
+  nodeEnv,
+  pgHost,
+  pgPort,
+  pgDb,
+  pgDb_test,
+  pgUser,
+  pgPassword,
+  saltRound,
+  pepperHash,
+  tokenSecret
+} = process.env
 
 export default {
   port: port,
   host: pgHost,
   dbport: pgPort,
-  database: pgDb,
+  database: nodeEnv === 'dev' ? pgDb : pgDb_test,
   user: pgUser,
-  password: pgPassword
+  password: pgPassword,
+  salt: saltRound,
+  pepper: pepperHash,
+  token: tokenSecret
 }
