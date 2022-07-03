@@ -44,9 +44,9 @@ describe('OrdersModel Unit Testing', () => {
     beforeAll(async () => {
       const createUser = await UserModel.createUser(userr)
       userr.user_id = createUser.user_id
+      order.user_id = createUser.user_id
       const creatOrder = await OrderModel.createOrder(order)
       order.order_id = creatOrder.order_id
-      order.user_id = createUser.user_id
     })
 
     afterAll(async () => {

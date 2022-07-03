@@ -48,9 +48,9 @@ describe('OrdersModel Unit Testing', () => {
         beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
             const createUser = yield UserModel.createUser(userr);
             userr.user_id = createUser.user_id;
+            order.user_id = createUser.user_id;
             const creatOrder = yield OrderModel.createOrder(order);
             order.order_id = creatOrder.order_id;
-            order.user_id = createUser.user_id;
         }));
         afterAll(() => __awaiter(void 0, void 0, void 0, function* () {
             const connection = yield index_1.default.connect();

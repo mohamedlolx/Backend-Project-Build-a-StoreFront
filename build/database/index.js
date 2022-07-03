@@ -11,8 +11,7 @@ const pool = new pg_1.Pool({
     database: config_1.default.database,
     user: config_1.default.user,
     password: config_1.default.password,
-    port: port,
-    max: 1
+    port: port
 });
 pool.on('error', (error) => {
     console.log(error.message);
