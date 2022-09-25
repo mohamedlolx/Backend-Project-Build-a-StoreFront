@@ -1,4 +1,4 @@
-# Udacity: Build A Storefront Backend
+# Project: Build A Storefront Backend
 
 This is a backend API build in Nodejs for an online store.
 It exposes a RESTful API that will be used by the frontend developer on the frontend.
