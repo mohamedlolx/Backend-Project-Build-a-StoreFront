@@ -4,7 +4,7 @@ This is a backend API build in Nodejs for an online store.
 It exposes a RESTful API that will be used by the frontend developer on the frontend.
 To lead to a full front and backend STORE.
 
-The database schema and and API route information in the [REQUIREMENT.md](REQUIREMENTS.md)
+The database schema and and API route information in the pictures in the last of readme
 
 ## Installation Instructions
 
